@@ -21,14 +21,14 @@ body {
   
   .search-container {
     display: flex;
-    flex-direction: row;
     align-items: center;
     background-color: white;
-    border-radius: 2.5rem;
+    border-radius: 50px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
     overflow: hidden;
     width: 100%;
-    max-width: 320px;
+    max-width: 400px;
+    height: 60px;
     margin-bottom: 1rem;
   }
   
@@ -37,17 +37,22 @@ body {
     border: none;
     outline: none;
     font-size: 1rem;
-    padding: 1rem 1.5rem;
-    border-radius: 2.5rem 0 0 2.5rem;
+    padding: 0 1.2rem;
+    height: 100%;
+    border-radius: 50px 0 0 50px;
     color: #333;
   }
   
   button {
     background-color: #5A6CFF;
     border: none;
-    padding: 1rem;
+    width: 60px;
+    height: 100%;
+    border-radius: 0 50px 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    border-radius: 0 2.5rem 2.5rem 0;
   }
   
   button img {
@@ -70,11 +75,13 @@ body {
     }
   
     .search-container {
-      max-width: 480px;
+      max-width: 500px;
+      height: 64px;
     }
   
     input {
       font-size: 1.1rem;
+      padding: 0 1.5rem;
     }
   
     #result {
@@ -91,10 +98,16 @@ body {
   
     .search-container {
       max-width: 600px;
+      height: 70px;
     }
   
     input {
       font-size: 1.2rem;
+    }
+  
+    button img {
+      width: 22px;
+      height: 22px;
     }
   
     #result {
