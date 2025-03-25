@@ -2,7 +2,7 @@ const input = document.getElementById("stationInput");
 const button = document.getElementById("searchButton");
 const resultBox = document.getElementById("result");
 
-const CSV_URL = "stations.csv"; // Local file in same folder as index.html
+const CSV_URL = "https://raw.githubusercontent.com/jottumseijner/NS-puzzel-oplosser/main/stations.csv";
 
 function normalize(str) {
   return str
