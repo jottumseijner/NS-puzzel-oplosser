@@ -1,46 +1,52 @@
-let stations = [];
+const input = document.getElementById("stationInput");
+const button = document.getElementById("searchButton");
+const resultBox = document.getElementById("result");
 
-// Load CSV and extract station names
-fetch('stations.csv')
-  .then(response => response.text())
-  .then(data => {
-    const rows = data.trim().split('\n');
-    // Assume first row is header, skip it
-    for (let i = 1; i < rows.length; i++) {
-      const columns = rows[i].split(',');
-      const stationName = columns[0].trim(); // adjust index if needed
-      stations.push(stationName);
-    }
-  });
+// Replace this with your actual GitHub raw CSV path:
+const CSV_URL = "https://raw.githubusercontent.com/jottumseijner/NS-puzzel-oplosser/main/stations.csv";
 
-function sortString(str) {
+// Helper: Normalize and sort station name into lowercase string
+function normalize(str) {
   return str
     .toLowerCase()
-    .replace(/[^a-z]/g, '')
-    .split('')
+    .split("")
+    .filter((c) => /[a-z]/.test(c))
     .sort()
-    .join('');
+    .join("");
 }
 
-function searchStation() {
-  const input = document.getElementById('stationInput').value;
-  const sortedInput = sortString(input);
-  let match = null;
+// Fetch and parse CSV
+async function fetchStations() {
+  const response = await fetch(CSV_URL);
+  const text = await response.text();
+  return text.split("\n").map((line) => line.trim()).filter(Boolean);
+}
 
-  for (let station of stations) {
-    const sortedStation = sortString(station);
-    if (sortedStation === sortedInput) {
-      match = station;
-      break;
+// Main function to handle search
+async function handleSearch() {
+  const userInput = input.value;
+  const normalizedInput = normalize(userInput);
+  const stations = await fetchStations();
+
+  for (const station of stations) {
+    const clean = station.trim();
+    const normalizedStation = normalize(clean);
+
+    if (normalizedStation === normalizedInput) {
+      resultBox.textContent = `Found station: ${clean}`;
+      return;
     }
   }
 
-  const result = document.getElementById('result');
-  if (match) {
-    result.textContent = `Found station: ${match}`;
-    result.classList.add('found');
-  } else {
-    result.textContent = `Station not found`;
-    result.classList.remove('found');
-  }
+  resultBox.textContent = "Station not found";
 }
+
+// Trigger on click
+button.addEventListener("click", handleSearch);
+
+// Optional: allow Enter key to submit
+input.addEventListener("keypress", function (e) {
+  if (e.key === "Enter") {
+    handleSearch();
+  }
+});
