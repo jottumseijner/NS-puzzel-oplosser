@@ -1,97 +1,110 @@
-/* Base styles */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "SF Pro", -apple-system, BlinkMacSystemFont, sans-serif;
-  background-color: #18afb2;
-  color: white;
-  text-align: center;
-  min-height: 100vh;
-  overflow: hidden;
-  position: relative;
-}
-
-/* Background circles */
-.circle {
-  position: absolute;
-  border-radius: 50%;
-  opacity: 0.3;
-}
-
-.circle1 {
-  width: 150%;
-  height: 150%;
-  top: -50%;
-  left: -50%;
-  background-color: #0fa8a4;
-}
-
-.circle2 {
-  width: 120%;
-  height: 120%;
-  bottom: -60%;
-  right: -30%;
-  background-color: #0da39f;
-}
-
-/* Container for content */
-.container {
-  position: relative;
-  z-index: 2;
-  padding: 100px 20px 40px;
-}
-
-/* Heading styles */
-h1 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 50px;
-  line-height: 1.4;
-}
-
-/* Search bar styles */
-.search-box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: white;
-  border-radius: 50px;
-  padding: 10px 20px;
-  width: 350px;
-  max-width: 90%;
-  margin: 0 auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-.search-box input {
-  border: none;
-  outline: none;
-  font-size: 1rem;
-  flex: 1;
-  padding: 10px 15px;
-  border-radius: 50px;
-  color: #333;
-}
-
-.search-box button {
-  background-color: #5a6cff;
-  border: none;
-  outline: none;
-  color: white;
-  font-size: 1.2rem;
-  padding: 10px 16px;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-box button:hover {
-  background-color: #4a5ce0;
-}
-
-/* Result text */
-.result {
-  margin-top: 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-}
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #18afb2;
+    color: white;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  /* Background circles */
+  .background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+  }
+  
+  .circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #0fa8a4;
+    opacity: 0.4;
+  }
+  
+  .circle1 {
+    width: 1400px;
+    height: 1400px;
+    top: -700px;
+    left: -700px;
+  }
+  
+  .circle2 {
+    width: 1200px;
+    height: 1200px;
+    bottom: -600px;
+    right: -600px;
+  }
+  
+  /* Container */
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0 20px;
+  }
+  
+  .title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+  }
+  
+  /* Search bar styling */
+  .input-container {
+    display: flex;
+    align-items: center;
+    background: white;
+    border-radius: 50px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 2rem;
+  }
+  
+  .input-container input {
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 300px;
+    background: transparent;
+    color: #333;
+    font-family: inherit;
+  }
+  
+  .input-container input::placeholder {
+    color: #999;
+  }
+  
+  .search-btn {
+    background-color: #5a6cff;
+    border: none;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    margin-left: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+  }
+  
+  .search-btn:hover {
+    background-color: #4a5bdd;
+  }
+  
+  /* Result display */
+  .result {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
