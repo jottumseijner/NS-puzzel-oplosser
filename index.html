@@ -2,22 +2,27 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NS Puzzle Unscrambler</title>
   <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;700&display=swap" rel="stylesheet" />
 </head>
 <body>
+  <!-- Background Circles -->
   <div class="background">
     <div class="circle circle1"></div>
     <div class="circle circle2"></div>
   </div>
 
+  <!-- Main Container -->
   <div class="container">
     <h1 class="title">Welcome to the NS<br />puzzle unscrambler</h1>
 
     <div class="input-container">
-      <input id="stationInput" type="text" placeholder="Enter the station name..." />
+      <input
+        type="text"
+        id="stationInput"
+        placeholder="Enter the station name..."
+      />
       <button id="searchButton" class="search-btn">🔍</button>
     </div>
 
