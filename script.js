@@ -3,7 +3,6 @@ const button = document.getElementById("searchButton");
 const resultBox = document.getElementById("result");
 
 const stations = [
-  "name_long",
   "'s-hertogenbosch",
   "'s-hertogenbosch oost",
   "'t harde",
