@@ -2,10 +2,8 @@ const input = document.getElementById("stationInput");
 const button = document.getElementById("searchButton");
 const resultBox = document.getElementById("result");
 
-// Replace this with your actual GitHub raw CSV path:
-const CSV_URL = "https://raw.githubusercontent.com/jottumseijner/NS-puzzel-oplosser/main/stations.csv";
+const CSV_URL = "stations.csv";  // Assumes this file is in the same folder as index.html
 
-// Helper: Normalize and sort station name into lowercase string
 function normalize(str) {
   return str
     .toLowerCase()
@@ -15,25 +13,24 @@ function normalize(str) {
     .join("");
 }
 
-// Fetch and parse CSV
 async function fetchStations() {
   const response = await fetch(CSV_URL);
   const text = await response.text();
-  return text.split("\n").map((line) => line.trim()).filter(Boolean);
+  return text
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
 }
 
-// Main function to handle search
 async function handleSearch() {
   const userInput = input.value;
   const normalizedInput = normalize(userInput);
   const stations = await fetchStations();
 
   for (const station of stations) {
-    const clean = station.trim();
-    const normalizedStation = normalize(clean);
-
+    const normalizedStation = normalize(station);
     if (normalizedStation === normalizedInput) {
-      resultBox.textContent = `Found station: ${clean}`;
+      resultBox.textContent = `Found station: ${station}`;
       return;
     }
   }
@@ -41,11 +38,8 @@ async function handleSearch() {
   resultBox.textContent = "Station not found";
 }
 
-// Trigger on click
 button.addEventListener("click", handleSearch);
-
-// Optional: allow Enter key to submit
-input.addEventListener("keypress", function (e) {
+input.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     handleSearch();
   }
