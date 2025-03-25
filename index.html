@@ -1,14 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Station Unscrambler</title>
+  <meta charset="UTF-8">
+  <title>NS Puzzel Oplosser</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 30px;
+      background: #f4f4f4;
+    }
+    input, button {
+      font-size: 1em;
+      padding: 8px;
+      margin-top: 10px;
+    }
+    #output {
+      margin-top: 20px;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-  <h1>Unscramble the Station Name</h1>
-  <input id="input" type="text" placeholder="Enter scrambled station">
-  <button onclick="unscramble()">Find Station</button>
-  <p id="result"></p>
+  <h1>NS Puzzel Oplosser</h1>
+  <p>Voer een scrambled stationnaam in:</p>
+  <input type="text" id="userInput" placeholder="bv. 'rdaottmseam neralctaa'">
+  <button onclick="solvePuzzle()">Zoek station</button>
 
-  <script src="script.js"></script>
+  <div id="output"></div>
+
+  <script>
+    let stationNames = [];
+
+    // Load CSV file
+    fetch('stations.csv')
+      .then(response => response.text())
+      .then(data => {
+        const lines = data.trim().split('\n');
+        stationNames = lines.map(line => line.trim());
+      });
+
+    function solvePuzzle() {
+      const input = document.getElementById('userInput').value;
+      const lettersOnly = input.replace(/[^a-zA-Z]/g, '').toLowerCase().split('').sort().join('');
+
+      for (const station of stationNames) {
+        const normalized = station.replace(/\s+/g, '').toLowerCase().split('').sort().join('');
+        if (normalized === lettersOnly) {
+          document.getElementById('output').innerText = `Gevonden station: ${station}`;
+          return;
+        }
+      }
+      document.getElementById('output').innerText = "Station niet gevonden.";
+    }
+  </script>
 </body>
 </html>
